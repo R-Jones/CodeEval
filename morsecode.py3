@@ -7,12 +7,4 @@ morsecodes = {'.-':'A', '-...':'B', '-.-.':'C', '-..':'D', '.':'E', '..-.':'F', 
 
 with open(sys.argv[1], 'r') as test_cases:
 	for line in test_cases:
-
-		#print([[char for char in y.strip()] for y in line.strip('\n').split('  ')])
-		#print(''.join([[morsecodes[char] for char in y.split()] for y in line.strip('\n').split('  ')]))
-
-
-		#print([[morsecodes[char] for char in y.split()] for y in line.strip('\n').split('  ')])
-		
-
 		print(''.join([morsecodes[char] for char in line.strip('\n').replace('  ', ' space ').split()]))
