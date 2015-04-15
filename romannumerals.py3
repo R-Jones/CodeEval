@@ -1,19 +1,22 @@
-import sys, functools
+import sys
 
-offset = 0
-r = ['IIIVIIIX','XXXLXXXC','CCCDCCCM','MMM']
-
+ones = "IXCM"
+fives = "VLD"
 
 with open(sys.argv[1], 'r') as test_cases:
 	for line in test_cases:
-		rline = line[::-1]
-		length = len(line.strip('\n'))
-
-		outLine = []
-		for place in range(0,length):
-			num = int(rline[place])
-			if(num in (4, 9)):
-				outLine[:0] = r[place][]
-
-		#functools.reduce(x + romanize(y, l), line.strip('\n'))
-		#print([romanize(int(line[place]), place, offset)) for place in range(0,length)])
+		retVal = []
+		for x in range(0 , len(line.strip('\n'))):
+			num = int(line.strip('\n')[-x - 1])
+			if (0 < num < 4):
+				retVal += ones[x] * num
+			elif (num == 4):
+				retVal += fives[x] + ones[x]
+			elif (4 < num < 9):
+				retVal += (ones[x] * (num - 5)) + fives[x] 
+			elif(num == 9):
+				retVal += ones[x:x + 2][::-1]
+			#print(num)
+			#print(x)
+			#print(retVal)
+		print(''.join(retVal[::-1]))
